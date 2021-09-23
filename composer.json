@@ -1,0 +1,17 @@
+{
+    "name": "beedooedtech/beedoo-sdk-php",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Beedoo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Igor Santana",
+            "email": "igor.santana@beedoo.com.br"
+        }
+    ],
+    "require": {}
+}
