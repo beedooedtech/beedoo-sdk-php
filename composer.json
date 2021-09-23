@@ -10,7 +10,12 @@
         "beedoo",
         "edtech",
         "api"
-      ],
+    ],
+    "scripts": {
+        "test": [
+            "phpunit"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "Beedoo\\": "src/"
