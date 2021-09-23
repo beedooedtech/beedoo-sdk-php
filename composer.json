@@ -23,7 +23,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "BeedooTests\\": "tests/"
+            "BeedooTests\\": "tests/",
+            "Tools\\": "tools/"
         }
     },
     "authors": [
