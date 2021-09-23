@@ -6,7 +6,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Sobre Beedoo SDK
+# Sobre Beedoo SDK
 
 Acessar documentação completa da [Beedoo API](http://document-api.beedoo.io.s3-website-us-east-1.amazonaws.com).
 
