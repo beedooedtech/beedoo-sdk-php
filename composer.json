@@ -1,10 +1,24 @@
 {
     "name": "beedooedtech/beedoo-sdk-php",
+    "description": "Beedoo API PHP SDK",
     "type": "library",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "license": "MIT",
+    "keywords": [
+        "beedoo.com.br",
+        "beedoo",
+        "edtech",
+        "api"
+      ],
     "autoload": {
         "psr-4": {
             "Beedoo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BeedooTests\\": "tests/"
         }
     },
     "authors": [
@@ -13,5 +27,12 @@
             "email": "igor.santana@beedoo.com.br"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=5.6.0",
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3",
+        "phpunit/phpunit": "^9.5"
+    }
 }
