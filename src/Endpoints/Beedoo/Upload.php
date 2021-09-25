@@ -5,13 +5,14 @@ namespace Beedoo\Endpoints\Beedoo;
 use Beedoo\Routes;
 use Beedoo\Endpoints\Endpoint;
 
-class Team extends Endpoint
+class Upload extends Endpoint
 {
-    public function getAvatar()
+    public function getUrl(array $payload)
     {
         $response = $this->client->request(
             self::GET,
-            Routes::team()->avatar()
+            Routes::upload()->url(),
+            ['query' => $payload]
         );
 
         return $response->data;

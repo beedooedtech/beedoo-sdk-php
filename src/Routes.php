@@ -6,7 +6,10 @@ use Beedoo\Anonymous;
 
 class Routes
 {
-    public static function accessToken()
+    /**
+     * @return Anonymous
+     */
+    public static function accessToken(): Anonymous
     {
         $anonymous = new Anonymous();
 
@@ -17,7 +20,10 @@ class Routes
         return $anonymous;
     }
 
-    public static function beehubWiki()
+    /**
+     * @return Anonymous
+     */
+    public static function beehubWiki(): Anonymous
     {
         $anonymous = new Anonymous();
 
@@ -28,7 +34,24 @@ class Routes
         return $anonymous;
     }
 
-    public static function wiki()
+    /**
+     * @return Anonymous
+     */
+    public static function groups(): Anonymous
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return "admin/api/v1/groups";
+        };
+
+        return $anonymous;
+    }
+
+    /**
+     * @return Anonymous
+     */
+    public static function wiki(): Anonymous
     {
         $anonymous = new Anonymous();
 
@@ -36,10 +59,17 @@ class Routes
             return "api/v1/wiki/isreadarticle";
         };
 
+        $anonymous->saveArticleRead = static function () {
+            return "api/v1/wiki/save-article-read";
+        };
+
         return $anonymous;
     }
 
-    public static function team()
+    /**
+     * @return Anonymous
+     */
+    public static function team(): Anonymous
     {
         $anonymous = new Anonymous();
 
@@ -49,8 +79,39 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return Anonymous
+     */
+    public static function upload(): Anonymous
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->url = static function () {
+            return "admin/api/v1/upload";
+        };
+
+        return $anonymous;
+    }
+
+    /**
+     * @return Anonymous
+     */
+    public static function visualIdentity(): Anonymous
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return "admin/api/v1/visualidentity";
+        };
+
+        return $anonymous;
+    }
     
-    public static function user()
+    /**
+     * @return Anonymous
+     */
+    public static function user(): Anonymous
     {
         $anonymous = new Anonymous();
 
@@ -60,6 +121,20 @@ class Routes
 
         $anonymous->details = static function ($userId) {
             return "admin/api/v1/users/{$userId}";
+        };
+
+        return $anonymous;
+    }
+
+    /**
+     * @return Anonymous
+     */
+    public static function auth(): Anonymous
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return "login";
         };
 
         return $anonymous;

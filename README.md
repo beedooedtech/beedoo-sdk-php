@@ -31,6 +31,8 @@ Bom desenvolvimento! 😉
   - [Visual Identity](#visual-identity)
   - [Auth](#auth)
   - [User](#beedoo-user)
+    - [Cadastrar novo usuário](#cadastrar-novo-usuário)
+    - [Atualizar novo usuário](#atualizar-usuário)
 
 # Instalação
 
@@ -61,8 +63,64 @@ $beedoo = new Beedoo\Client("SECRET_KEY");
 
 ## BeeHub User
 
+### Cadastrar novo usuário
+
 ```php
 <?php
+
+/** Campos obrigatórios */
+
+$userData = [
+  "username" => "jhonsnow",
+  "name" => "Jhon Snow",
+  "login" => "jhonsnow",
+  "password" => "123mudar",
+  "status" => "Ativo",
+  "typeUser" => "Usuário",
+  "permission" => "Usuario",
+  "groups" => "geral"
+];
+
+$user = $beedoo->user()->create($userData);
+
+```
+
+### Atualizar usuário
+
+```php
+<?php
+
+$userData = [
+  "username" => "jhonsnow",
+  "name" => "Jhon Snow",
+  "login" => "jhonsnow",
+  "email" => "jhonsnow@gmail.com",
+  "password" => "123mudar",
+  "status" => "Ativo",
+  "typeUser" => "Usuário",
+  "permission" => "Usuario",
+  "groups" => "geral, grupo_pela_api",
+  "cpf_cnpj" => 46312127800,
+  "dashboard" => [
+    "agent_id" => 22032,
+    "template" => "Template DEV"
+  ],
+  "hierarchy" => [
+    "leader" => 77202,
+    "level" => "Gerente" 
+  ],
+  "language" => "pt-BR",
+  "leader" => true,
+  "mention_feed" => false,
+  "entrytime" => "18:45:00",
+  "exittime" => "23:15:00",
+  "customfields" => [
+    "Login-SSO" => "jhonsnow",
+    "Complementar Numero" => 12345
+  ]
+];
+
+$user = $beedoo->user()->update($userData);
 
 ```
 

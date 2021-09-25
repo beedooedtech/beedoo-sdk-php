@@ -7,11 +7,6 @@ use Beedoo\Endpoints\Endpoint;
 
 class AccessToken extends Endpoint
 {
-    /**
-     * @param array $payload
-     *
-     * @return \ArrayObject
-     */
     public function get(array $payload)
     {
         $response = $this->client->request(

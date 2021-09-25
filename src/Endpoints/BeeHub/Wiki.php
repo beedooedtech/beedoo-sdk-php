@@ -7,12 +7,7 @@ use Beedoo\Endpoints\Endpoint;
 
 class Wiki extends Endpoint
 {
-    /**
-     * @param array $payload
-     *
-     * @return \ArrayObject
-     */
-    public function get(array $payload)
+    public function get(array $payload): array
     {
         $response = $this->client->request(
             self::GET,

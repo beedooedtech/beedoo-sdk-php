@@ -53,21 +53,26 @@ class ResponseHandler
 
         $errors = [];
 
-        var_dump($response);
-        die();
-
-        // if (! )
-
-        foreach ($jsonError->data as $error) {
+        /**
+         * TODO:
+         * Melhorar essa estrutura
+         */
+        if (is_array($jsonError)) {
+            foreach ($jsonError->data as $error) {
+                array_push($errors, [
+                    "header" => isset($error->source->header),
+                    "detail" => $error->detail,
+                    "status" => $error->status,
+                ]);
+            }
+        } else {
             array_push($errors, [
-                "header" => isset($error->source->header),
-                "detail" => $error->detail,
-                "status" => $error->status,
+                "header" => "",
+                "detail" => $jsonError->message,
+                "status" => 400,
             ]);
         }
-
         
-
         return new BeedooException(
             $response->getStatusCode(),
             $errors[0]["detail"],

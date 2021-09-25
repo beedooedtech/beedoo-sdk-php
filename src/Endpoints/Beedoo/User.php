@@ -7,11 +7,6 @@ use Beedoo\Endpoints\Endpoint;
 
 class User extends Endpoint
 {
-    /**
-     * @param array $payload
-     * 
-     * @return \ArrayObject
-     */
     public function get(array $payload)
     {
         $response = $this->client->request(
@@ -23,11 +18,6 @@ class User extends Endpoint
         return $response->data;
     }
 
-    /**
-     * @param int $userId
-     * 
-     * @return \ArrayObject
-     */
     public function find(int $userId)
     {
         $response = $this->client->request(
@@ -58,11 +48,13 @@ class User extends Endpoint
 
     public function createOrUpdate(array $payload)
     {
-        $user = $this->find($payload['email']);
+        $user = $this->find($payload['username']); # Rota não implementada
 
-        if (! $user) {
+        if (! $user->data) {
             return $this->create($payload);
         }
+
+        $payload['id'] = $user->id;
 
         return $this->update($payload);
     }
