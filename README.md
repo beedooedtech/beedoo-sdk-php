@@ -22,14 +22,21 @@ Bom desenvolvimento! 😉
 - [Configuração](#configuração)
 - [BeeHub API](#beehub-api)
   - [Wiki](#beehub-wiki)
+    - [Consultar artigos na Wiki](#consultar-artigos-na-wiki)
   - [User](#beehub-user)
+    - [Access Token](#access-token)
 - [Beedoo API](#beedoo-api)
   - [Groups](#groups)
+    - [Consultar grupos](#consultar-grupos)
   - [Wiki](#beedoo-wiki)
+    - [Retorna se um determinado artigo foi lido](#retorna-se-um-determinado-artigo-lido)
+    - [Marca um artigo como lido](#marca-um-artigo-como-lido)
   - [Team](#team)
+    - [Retornar os avatares do time](#retornar-os-avatares-do-time)
   - [Upload](#upload)
+    - [Retornar uma URL pre assinada para upload de arquivos para o S3](#retornar-uma-URL-pre-assinada-para-upload-de-arquivos-para-o-S3)
   - [Visual Identity](#visual-identity)
-  - [Auth](#auth)
+    - [Retornar a identidade visual do time](#retornar-a-identidade-visual-do-time)
   - [User](#beedoo-user)
     - [Cadastrar novo usuário](#cadastrar-novo-usuário)
     - [Atualizar novo usuário](#atualizar-usuário)
@@ -56,6 +63,8 @@ $beedoo = new Beedoo\Client("SECRET_KEY");
 
 ## BeeHub Wiki
 
+### Consultar artigos na Wiki
+
 ```php
 <?php
 
@@ -72,6 +81,102 @@ $groups = $beedoo->groups()->get($params);
 ```
 
 ## BeeHub User
+
+### Access Token
+
+```php
+<?php
+
+$payloadAuth = [
+    "clientId" => "n6XSN0o6FDQZQ4lmxb7P2"
+];
+
+$accessToken = $beedoo->accessToken()->get($payloadAuth);
+
+```
+
+# Beedoo API
+
+## Groups
+
+### Consultar grupos
+
+```php
+<?php
+
+$params = [
+  "id" => 1,
+  "name" => "nome_do_grupo",
+  "offset" => 5,
+  "limit" => 20,
+];
+
+$groups = $beedoo->groups()->get($params);
+
+```
+
+## Beedoo Wiki
+
+### Retorna se um determinado artigo foi lido
+
+```php
+<?php
+
+$article = [
+  'id' => 279
+];
+
+$beedoo = $beedoo->wiki()->getIsReadArticle($article);
+
+```
+
+### Marca um artigo como lido
+
+```php
+<?php
+
+$article = [
+  'id' => 279
+];
+
+$beedoo = $beedoo->wiki()->saveArticleRead($article);
+
+```
+
+## Team
+
+### Retornar os avatares do time
+
+```php
+<?php
+
+$beedoo = $beedoo->team()->getAvatar();
+
+```
+
+## Upload
+
+### Retornar uma URL pre assinada para upload de arquivos para o S3
+
+```php
+<?php
+
+$beedoo = $beedoo->upload()->getUrl();
+
+```
+
+## Visual Identity
+
+### Retornar a identidade visual do time
+
+```php
+<?php
+
+$beedoo = $beedoo->visualIdentity()->get();
+
+```
+
+## Beedoo User
 
 ### Cadastrar novo usuário
 
@@ -98,6 +203,7 @@ $user = $beedoo->user()->create($userData);
 ### Atualizar usuário
 
 ```php
+
 <?php
 
 $userData = [
@@ -131,66 +237,6 @@ $userData = [
 ];
 
 $user = $beedoo->user()->update($userData);
-
-```
-
-# Beedoo API
-
-## Groups
-
-```php
-<?php
-
-$params = [
-  "id" => 1,
-  "name" => "nome_do_grupo",
-  "offset" => 5,
-  "limit" => 20,
-];
-
-$groups = $beedoo->groups()->get($params);
-
-```
-
-## Beedoo Wiki
-
-```php
-<?php
-
-```
-
-## Team
-
-```php
-<?php
-
-```
-
-## Upload
-
-```php
-<?php
-
-```
-
-## Visual Identity
-
-```php
-<?php
-
-```
-
-## Auth
-
-```php
-<?php
-
-```
-
-## Beedoo User
-
-```php
-<?php
 
 ```
 
