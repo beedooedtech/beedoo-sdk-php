@@ -59,6 +59,16 @@ $beedoo = new Beedoo\Client("SECRET_KEY");
 ```php
 <?php
 
+$params = [
+  "question" => "assunto_a_ser_pesquisado",
+  "category" => 1,
+  "tag" => 5,
+  "offset" => 20,
+  "limit" => 20,
+];
+
+$groups = $beedoo->groups()->get($params);
+
 ```
 
 ## BeeHub User
@@ -130,6 +140,15 @@ $user = $beedoo->user()->update($userData);
 
 ```php
 <?php
+
+$params = [
+  "id" => 1,
+  "name" => "nome_do_grupo",
+  "offset" => 5,
+  "limit" => 20,
+];
+
+$groups = $beedoo->groups()->get($params);
 
 ```
 
