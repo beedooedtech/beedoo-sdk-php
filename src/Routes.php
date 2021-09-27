@@ -119,8 +119,8 @@ class Routes
             return "admin/api/v1/users";
         };
 
-        $anonymous->details = static function ($userId) {
-            return "admin/api/v1/users/{$userId}";
+        $anonymous->details = static function ($identity) {
+            return "admin/api/v1/users/{$identity}";
         };
 
         return $anonymous;
