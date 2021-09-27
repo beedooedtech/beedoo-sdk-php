@@ -38,6 +38,7 @@ class ResponseHandler
     private static function parseException(ClientException $guzzleException)
     {
         $response = $guzzleException->getResponse();
+        $code = $response->getStatusCode();
 
         if (is_null($response)) {
             return $guzzleException;
@@ -51,32 +52,12 @@ class ResponseHandler
             return $guzzleException;
         }
 
-        $errors = [];
+        $jsonError->message = property_exists($jsonError, 'message') ? $jsonError->message : null;
 
-        /**
-         * TODO:
-         * Melhorar essa estrutura
-         */
-        if (is_array($jsonError)) {
-            foreach ($jsonError->data as $error) {
-                array_push($errors, [
-                    "header" => isset($error->source->header),
-                    "detail" => $error->detail,
-                    "status" => $error->status,
-                ]);
-            }
-        } else {
-            array_push($errors, [
-                "header" => "",
-                "detail" => $jsonError->message,
-                "status" => 400,
-            ]);
-        }
-        
         return new BeedooException(
-            $response->getStatusCode(),
-            $errors[0]["detail"],
-            $errors[0]["status"]
+            $code,
+            $jsonError->error,
+            $jsonError->message
         );
     }
 
