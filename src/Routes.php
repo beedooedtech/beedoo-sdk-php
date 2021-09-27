@@ -55,7 +55,7 @@ class Routes
     {
         $anonymous = new Anonymous();
 
-        $anonymous->base = static function () {
+        $anonymous->isReadArticle = static function () {
             return "api/v1/wiki/isreadarticle";
         };
 
