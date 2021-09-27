@@ -5,63 +5,31 @@ namespace Beedoo\Exceptions;
 final class BeedooException extends \Exception
 {
     /**
-     * @var string
+     * @var srting
      */
-    private $type;
+    private $errorType;
 
-    /**
-     * @var string
-     */
-    private $parameterName;
-
-    /**
-     * @var string
-     */
-    private $errorMessage;
-
-    /**
-     * @param string $type
-     * @param string $parameterName
-     * @param string $errorMessage
-     */
-    public function __construct($type, $parameterName, $errorMessage)
+    public function __construct(int $code, string $errorType, string $message = null)
     {
-        $this->type = $type;
-        $this->paramInvalidJsonExceptioneterName = $parameterName;
-        $this->parameterName = $parameterName;
-        $this->errorMessage = $errorMessage;
+        $this->code = $code;
+        $this->errorType = $errorType;
 
-        $exceptionMessage = $this->buildExceptionMessage();
-
-        parent::__construct($exceptionMessage);
+        parent::__construct($message, $code);
     }
 
     /**
      * @return string
      */
-    private function buildExceptionMessage()
+    public function getErrorType()
     {
-        return sprintf(
-            'ERROR TYPE: %s. PARAMETER: %s. MESSAGE: %s',
-            $this->type,
-            $this->parameterName,
-            $this->errorMessage
-        );
+        return $this->errorType;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getType()
+    public function getStatusCode()
     {
-        return $this->type;
-    }
-
-    /**
-     * @return string
-     */
-    public function getParameterName()
-    {
-        return $this->parameterName;
+        return $this->code;
     }
 }
