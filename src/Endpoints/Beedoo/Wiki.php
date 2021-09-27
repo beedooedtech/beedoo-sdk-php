@@ -7,18 +7,18 @@ use Beedoo\Endpoints\Endpoint;
 
 class Wiki extends Endpoint
 {
-    public function get(array $payload)
+    public function getIsReadArticle(array $payload)
     {
         $response = $this->client->request(
             self::GET,
-            Routes::wiki()->base(),
+            Routes::wiki()->isReadArticle(),
             ["query" => $payload]
         );
 
         return $response->data;
     }
 
-    public function isReadUpdate(array $payload)
+    public function saveArticleRead(array $payload)
     {
         return $this->client->request(
             self::PUT,
