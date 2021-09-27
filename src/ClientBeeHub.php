@@ -12,8 +12,8 @@ class ClientBeeHub extends Client implements BeeHubAuth
     private Wiki $wiki;
 
     /**
-     * @param string $apiKey
-     * @param string $server
+     * @param string $apiKey Secret Key
+     * @param string $server ID de referência (parâmetro clientId) previamente cadastrado no Beedoo.
      * @param array $options
      */
     public function __construct(string $apiKey, string $server = "", array $options = [])
