@@ -4,6 +4,7 @@ namespace Beedoo\Endpoints\Beedoo;
 
 use Beedoo\Routes;
 use Beedoo\Endpoints\Endpoint;
+use Beedoo\Exceptions\BeedooException;
 
 class User extends Endpoint
 {
@@ -41,21 +42,26 @@ class User extends Endpoint
     {
         return $this->client->request(
             self::PUT,
-            Routes::user()->details($payload['id']),
+            Routes::user()->details($payload['username']),
             ['json' => $payload]
         );
     }
 
-    public function createOrUpdate(array $payload)
+    public function updateOrCreate(array $payload)
     {
-        $user = $this->find($payload['username']); # Rota não implementada
-
-        if (! $user->data) {
-            return $this->create($payload);
+        try {
+            return $this->update($payload);
+        } catch (BeedooException $e) {
+            if ($e->getErrorType() === "doesNotUser") {
+                return $this->create($payload);
+            }
+    
+            return new BeedooException(
+                $e->getStatusCode(),
+                $e->getErrorType(),
+                $e->getMessage()
+            );
         }
 
-        $payload['id'] = $user->id;
-
-        return $this->update($payload);
     }
 }
