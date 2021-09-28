@@ -22,8 +22,8 @@ class ClientBeedoo extends Client implements BeedooAuth
     private Auth $auth;
 
     /**
-     * @param string $apiKey
-     * @param string $server
+     * @param string $apiKey Your Secret Key
+     * @param string $server production = null | homologation = "hml" | development = "dev"
      * @param array $options
      */
     public function __construct(string $apiKey = "", string $server = "", array $options = [])
