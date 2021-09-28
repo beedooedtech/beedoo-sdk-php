@@ -44,7 +44,9 @@ Bom desenvolvimento! 😉
 
 Instale a biblioteca utilizando o comando:
 
-`composer require beedooedtech/beedoo-sdk-php`
+```shell
+composer require beedooedtech/beedoo-sdk-php
+```
 
 ## Configuração
 
