@@ -1,5 +1,7 @@
 vendor
 public
 tools
+reports
 .phpunit.result.cache
+.phpunit.cache
 .env
