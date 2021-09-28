@@ -1,9 +1,9 @@
 <p align="center"><a href="http://document-api.beedoo.io.s3-website-us-east-1.amazonaws.com/" target="_blank"><img src="https://www.beedoo.com.br/wp-content/uploads/2019/09/LOGO-BEEDOO-EDTECH-WHITE.png" width="400"></a></p>
 
-<p align="center">
+<!-- <p align="center">
 <a href="https://packagist.org/packages/beedooedtech/beedoo-sdk-php"><img src="https://img.shields.io/packagist/dt/beedooedtech/beedoo-sdk-php" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/beedooedtech/beedoo-sdk-php"><img src="https://img.shields.io/packagist/v/beedooedtech/beedoo-sdk-php" alt="Latest Stable Version"></a>
-</p>
+</p> -->
 
 # Sobre Beedoo SDK
 
