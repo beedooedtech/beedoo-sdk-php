@@ -35,10 +35,9 @@
     ],
     "require": {
         "php": ">=5.6.0",
-        "guzzlehttp/guzzle": "^7.3"
+        "guzzlehttp/guzzle": "^7.0"
     },
     "require-dev": {
-        "symfony/var-dumper": "^5.3",
         "phpunit/phpunit": "^9.5"
     }
 }
