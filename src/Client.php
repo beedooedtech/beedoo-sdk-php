@@ -17,9 +17,11 @@ abstract class Client implements Version, BasesUrl, Headers
     /** @var \GuzzleHttp\Client */
     protected $http;
     
-    private string $baseUrlDefault = 'https://api.beedoo.io/';
+    /** @var string */
+    private $baseUrlDefault = 'https://api.beedoo.io/';
     
-    protected string $apiKey;
+    /** @var string */
+    protected $apiKey;
 
     /**
      * @param string $server
@@ -66,7 +68,7 @@ abstract class Client implements Version, BasesUrl, Headers
      * 
      * @return array
      */
-    private function buildHeaders(array $options = []): array
+    private function buildHeaders(array $options = [])
     {
         $options['base_uri'] = $this->baseUrlDefault;
 
@@ -95,7 +97,7 @@ abstract class Client implements Version, BasesUrl, Headers
      * 
      * @return string
      */
-    private function buildUserAgent($customUserAgent = ''): string
+    private function buildUserAgent($customUserAgent = '')
     {
         return trim(sprintf(
             '%s beedoo-sdk-php/%s php/%s',

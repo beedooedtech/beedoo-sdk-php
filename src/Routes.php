@@ -9,7 +9,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function accessToken(): Anonymous
+    public static function accessToken()
     {
         $anonymous = new Anonymous();
 
@@ -23,7 +23,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function beehubWiki(): Anonymous
+    public static function beehubWiki()
     {
         $anonymous = new Anonymous();
 
@@ -37,7 +37,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function groups(): Anonymous
+    public static function groups()
     {
         $anonymous = new Anonymous();
 
@@ -51,7 +51,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function wiki(): Anonymous
+    public static function wiki()
     {
         $anonymous = new Anonymous();
 
@@ -69,7 +69,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function team(): Anonymous
+    public static function team()
     {
         $anonymous = new Anonymous();
 
@@ -83,7 +83,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function upload(): Anonymous
+    public static function upload()
     {
         $anonymous = new Anonymous();
 
@@ -97,7 +97,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function visualIdentity(): Anonymous
+    public static function visualIdentity()
     {
         $anonymous = new Anonymous();
 
@@ -111,7 +111,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function user(): Anonymous
+    public static function user()
     {
         $anonymous = new Anonymous();
 
@@ -129,7 +129,7 @@ class Routes
     /**
      * @return Anonymous
      */
-    public static function auth(): Anonymous
+    public static function auth()
     {
         $anonymous = new Anonymous();
 
