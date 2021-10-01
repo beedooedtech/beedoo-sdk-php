@@ -14,7 +14,8 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 
 abstract class Client implements Version, BasesUrl, Headers 
 {
-    protected GuzzleHttpClient $http;
+    /** @var \GuzzleHttp\Client */
+    protected $http;
     
     private string $baseUrlDefault = 'https://api.beedoo.io/';
     
