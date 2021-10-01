@@ -8,7 +8,8 @@ use Beedoo\Endpoints\BeeHub\AccessToken;
 
 class ClientBeeHub extends Client implements BeeHubAuth
 {
-    private AccessToken $accessToken;
+    /** @var \Beedoo\Endpoints\BeeHub\AccessToken */
+    private $accessToken;
     private Wiki $wiki;
 
     /**
@@ -41,9 +42,9 @@ class ClientBeeHub extends Client implements BeeHubAuth
     }
 
     /**
-     * @return AccessToken
+     * @return \Beedoo\Endpoints\BeeHub\AccessToken
      */
-    public function accessToken(): AccessToken
+    public function accessToken()
     {
         return $this->accessToken;
     }
