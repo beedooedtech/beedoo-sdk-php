@@ -10,7 +10,9 @@ class ClientBeeHub extends Client implements BeeHubAuth
 {
     /** @var \Beedoo\Endpoints\BeeHub\AccessToken */
     private $accessToken;
-    private Wiki $wiki;
+
+     /** @var \Beedoo\Endpoints\BeeHub\Wiki */
+    private $wiki;
 
     /**
      * @param string $apiKey Your Secret Key
@@ -50,9 +52,9 @@ class ClientBeeHub extends Client implements BeeHubAuth
     }
 
     /**
-     * @return Wiki
+     * @return \Beedoo\Endpoints\BeeHub\Wiki
      */
-    public function wiki(): Wiki
+    public function wiki()
     {
         return $this->wiki;
     }

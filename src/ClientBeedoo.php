@@ -13,13 +13,26 @@ use Beedoo\Endpoints\Beedoo\Wiki;
 
 class ClientBeedoo extends Client implements BeedooAuth
 {
-    private Groups $groups;
-    private Wiki $wiki;
-    private Team $team;
-    private Upload $upload;
-    private VisualIdentity $visualIdentity;
-    private User $user;
-    private Auth $auth;
+    /** @var \Beedoo\Endpoints\Beedoo\Groups */
+    private $groups;
+
+    /** @var \Beedoo\Endpoints\Beedoo\Wiki */
+    private $wiki;
+
+    /** @var \Beedoo\Endpoints\Beedoo\Team */
+    private $team;
+
+    /** @var \Beedoo\Endpoints\Beedoo\Upload */
+    private $upload;
+
+    /** @var \Beedoo\Endpoints\Beedoo\VisualIdentity */
+    private $visualIdentity;
+
+    /** @var \Beedoo\Endpoints\Beedoo\User */
+    private $user;
+
+    /** @var \Beedoo\Endpoints\Beedoo\Auth */
+    private $auth;
 
     /**
      * @param string $apiKey Your Secret Key
@@ -56,57 +69,57 @@ class ClientBeedoo extends Client implements BeedooAuth
     }
 
     /**
-     * @return Auth
+     * @return \Beedoo\Endpoints\Beedoo\Auth
      */
-    public function auth(): Auth
+    public function auth()
     {
         return $this->auth;
     }
 
     /**
-     * @return Groups
+     * @return \Beedoo\Endpoints\Beedoo\Groups
      */
-    public function groups(): Groups
+    public function groups()
     {
         return $this->groups;
     }
 
     /**
-     * @return Wiki
+     * @return \Beedoo\Endpoints\Beedoo\Wiki
      */
-    public function wiki(): Wiki
+    public function wiki()
     {
         return $this->wiki;
     }
 
     /**
-     * @return Team
+     * @return \Beedoo\Endpoints\Beedoo\Team
      */
-    public function team(): Team
+    public function team()
     {
         return $this->team;
     }
 
     /**
-     * @return Upload
+     * @return \Beedoo\Endpoints\Beedoo\Upload
      */
-    public function upload(): Upload
+    public function upload()
     {
         return $this->upload;
     }
 
     /**
-     * @return VisualIdentity
+     * @return \Beedoo\Endpoints\Beedoo\VisualIdentity
      */
-    public function visualIdentity(): VisualIdentity
+    public function visualIdentity()
     {
         return $this->visualIdentity;
     }
 
     /**
-     * @return User
+     * @return \Beedoo\Endpoints\Beedoo\User
      */
-    public function user(): User
+    public function user()
     {
         return $this->user;
     }
