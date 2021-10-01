@@ -11,7 +11,8 @@ abstract class Endpoint
     const PUT = 'PUT';
     const DELETE = 'DELETE';
 
-    protected Client $client;
+    /** @var \Beedoo\Client */
+    protected $client;
 
     public function __construct(Client $client)
     {
