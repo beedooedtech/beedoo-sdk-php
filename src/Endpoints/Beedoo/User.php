@@ -40,8 +40,8 @@ class User extends Endpoint
 
     public function update(array $payload)
     {
-        $identity = array_key_exists('username', $payload) ? $payload['username'] : null;
-        $identity = array_key_exists('id', $payload) ? $payload['id'] : null;
+        $identity = array_key_exists('username', $payload) ? $payload['username'] : 0;
+        $identity = array_key_exists('id', $payload) ? $payload['id'] : 0;
 
         return $this->client->request(
             self::PUT,
