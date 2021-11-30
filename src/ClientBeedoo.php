@@ -5,6 +5,7 @@ namespace Beedoo;
 use Beedoo\Contracts\BeedooAuth;
 use Beedoo\Endpoints\Beedoo\Auth;
 use Beedoo\Endpoints\Beedoo\Groups;
+use Beedoo\Endpoints\Beedoo\Powerapp\Powerapp;
 use Beedoo\Endpoints\Beedoo\Team;
 use Beedoo\Endpoints\Beedoo\Upload;
 use Beedoo\Endpoints\Beedoo\User;
@@ -34,6 +35,9 @@ class ClientBeedoo extends Client implements BeedooAuth
     /** @var \Beedoo\Endpoints\Beedoo\Auth */
     private $auth;
 
+    /** @var \Beedoo\Endpoints\Beedoo\Powerapp\Powerapp */
+    private $powerapp;
+
     /**
      * @param string $apiKey Your Secret Key
      * @param string $server production = null | homologation = "hml" | development = "dev"
@@ -50,6 +54,7 @@ class ClientBeedoo extends Client implements BeedooAuth
         $this->visualIdentity = new VisualIdentity($this);
         $this->user = new User($this);
         $this->auth = new Auth($this);
+        $this->powerapp = new Powerapp($this);
 
         $options = $this->buildAuthorizationHeader($options);
 
@@ -122,5 +127,13 @@ class ClientBeedoo extends Client implements BeedooAuth
     public function user()
     {
         return $this->user;
+    }
+
+    /**
+     * @return \Beedoo\Endpoints\Beedoo\Powerapp\Powerapp
+     */
+    public function powerapp()
+    {
+        return $this->powerapp;
     }
 }

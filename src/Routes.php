@@ -139,4 +139,22 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return Anonymous
+     */
+    public static function powerapp()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return "admin/api/v1/powerapps";
+        };
+
+        $anonymous->premmiar = static function () {
+            return "admin/api/v1/powerapps/premmiar";
+        };
+
+        return $anonymous;
+    }
 }
