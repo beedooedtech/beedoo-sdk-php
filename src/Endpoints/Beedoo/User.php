@@ -8,7 +8,7 @@ use Beedoo\Exceptions\BeedooException;
 
 class User extends Endpoint
 {
-    public function get(array $payload)
+    public function get(array $payload = [])
     {
         $response = $this->client->request(
             self::GET,
