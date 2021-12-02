@@ -53,6 +53,7 @@ class ResponseHandler
         }
 
         $jsonError->message = property_exists($jsonError, 'message') ? $jsonError->message : null;
+        $jsonError->error = property_exists($jsonError, 'error') ? $jsonError->error : "";
 
         return new BeedooException(
             $code,
