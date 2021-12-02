@@ -240,3 +240,4 @@ $userData = [
 $user = $beedoo->user()->update($userData);
 
 ```
+BeeTalk
