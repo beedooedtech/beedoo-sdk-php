@@ -12,24 +12,24 @@ use Beedoo\Exceptions\InvalidJsonException;
 use GuzzleHttp\Client as GuzzleHttpClient;
 
 
-abstract class Client implements Version, BasesUrl, Headers 
+abstract class Client implements Version, BasesUrl, Headers
 {
     /** @var \GuzzleHttp\Client */
     protected $http;
-    
+
     /** @var string */
-    private $baseUrlDefault = 'https://api.beedoo.io/';
-    
+    private $baseUrlDefault;
+
     /** @var string */
     protected $apiKey;
 
     /**
-     * @param string $server
+     * @param string $baseUrl
      * @param array $options
      */
-    public function __construct(string $server = "", array $options = [])
+    public function __construct(string $baseUrl = "", array $options = [])
     {
-        $this->defineBaseUrl($server);
+        $this->defineBaseUrl($baseUrl);
 
         $options = $this->buildHeaders($options);
 
@@ -65,7 +65,7 @@ abstract class Client implements Version, BasesUrl, Headers
 
     /**
      * @param array $options
-     * 
+     *
      * @return array
      */
     private function buildHeaders(array $options = [])
@@ -84,7 +84,7 @@ abstract class Client implements Version, BasesUrl, Headers
 
     /**
      * @param string $customUserAgent
-     * 
+     *
      * @return string
      */
     protected function addUserAgentHeaders($customUserAgent = '')
@@ -94,7 +94,7 @@ abstract class Client implements Version, BasesUrl, Headers
 
     /**
      * @param string $customUserAgent
-     * 
+     *
      * @return string
      */
     private function buildUserAgent($customUserAgent = '')
@@ -108,14 +108,12 @@ abstract class Client implements Version, BasesUrl, Headers
     }
 
     /**
-     * @param string $key
-     * 
+     * @param string $baseUrl
+     *
      * @return void
      */
-    public function defineBaseUrl(string $key): void
+    public function defineBaseUrl(string $baseUrl): void
     {
-        if (array_key_exists($key, self::BASES_URL)) {
-            $this->baseUrlDefault = self::BASES_URL[$key];
-        }
+        $this->baseUrlDefault = $baseUrl;
     }
 }
