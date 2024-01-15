@@ -40,10 +40,10 @@ class ClientBeedoo extends Client implements BeedooAuth
 
     /**
      * @param string $apiKey Your Secret Key
-     * @param string $server production = null | homologation = "hml" | development = "dev"
+     * @param string $baseUrl
      * @param array $options
      */
-    public function __construct(string $apiKey = "", string $server = "", array $options = [])
+    public function __construct(string $apiKey = "", string $baseUrl = "", array $options = [])
     {
         $this->apiKey = $apiKey;
 
@@ -58,7 +58,7 @@ class ClientBeedoo extends Client implements BeedooAuth
 
         $options = $this->buildAuthorizationHeader($options);
 
-        parent::__construct($server, $options);
+        parent::__construct($baseUrl, $options);
     }
 
     /**
