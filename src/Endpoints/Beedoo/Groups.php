@@ -17,4 +17,13 @@ class Groups extends Endpoint
 
         return $response->data;
     }
+
+    public function create(array $payload)
+    {
+        return $this->client->request(
+            self::POST,
+            Routes::groups()->base(),
+            ['json' => $payload]
+        );
+    }
 }
