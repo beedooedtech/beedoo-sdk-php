@@ -38,16 +38,42 @@ class User extends Endpoint
         );
     }
 
-    public function update(array $payload)
+    /**
+     * @param array $payload
+     * @param string|null $identityName One of: id|username|login|email|cpf.
+     *                                  When provided, $payload must contain that key
+     *                                  and it is used to identify the user in the route.
+     */
+    public function update(array $payload, string $identityName = null)
     {
-        $identity = array_key_exists('username', $payload) ? $payload['username'] : 0;
-        $identity = array_key_exists('id', $payload) ? $payload['id'] : 0;
+        $identity = $this->resolveIdentity($payload, $identityName);
 
         return $this->client->request(
             self::PUT,
-            Routes::user()->details($identity),
+            Routes::user()->details($identity, $identityName),
             ['json' => $payload]
         );
+    }
+
+    private function resolveIdentity(array $payload, ?string $identityName)
+    {
+        if ($identityName !== null) {
+            if (!array_key_exists($identityName, $payload)) {
+                throw new \InvalidArgumentException("Payload must contain '{$identityName}' when identityName is provided.");
+            }
+
+            return $payload[$identityName];
+        }
+
+        if (array_key_exists('id', $payload)) {
+            return $payload['id'];
+        }
+
+        if (array_key_exists('username', $payload)) {
+            return $payload['username'];
+        }
+
+        return 0;
     }
 
     public function updateOrCreate(array $payload)
