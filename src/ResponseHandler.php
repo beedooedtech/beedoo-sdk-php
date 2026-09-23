@@ -52,14 +52,66 @@ class ResponseHandler
             return $guzzleException;
         }
 
-        $jsonError->message = property_exists($jsonError, 'message') ? $jsonError->message : null;
-        $jsonError->error = property_exists($jsonError, 'error') ? $jsonError->error : "";
-
         return new BeedooException(
             $code,
-            $jsonError->error,
-            $jsonError->message
+            self::extractErrorType($jsonError),
+            self::extractErrorMessage($jsonError)
         );
+    }
+
+    /**
+     * The Core API returns error bodies in more than one shape depending on
+     * which endpoint/subsystem answers:
+     *   - legacy flat shape:      {"error": "...", "message": "..."}
+     *   - JSON:API-ish payload:   {"status": "error", "errors": [{"status": "...", "detail": "..."}]}
+     *                             {"status": "fail",  "data":   [{"status": "...", "detail": "..."}]}
+     *   - no body at all (e.g. a bare 404) -- $jsonError has none of the above.
+     * Try each in order so a message is still surfaced whichever shape the
+     * response actually used, instead of silently coming back empty.
+     *
+     * @param mixed $jsonError
+     */
+    private static function extractErrorMessage($jsonError): string
+    {
+        if (property_exists($jsonError, 'message') && $jsonError->message) {
+            return $jsonError->message;
+        }
+
+        foreach (['errors', 'data'] as $listProperty) {
+            if (property_exists($jsonError, $listProperty) && is_array($jsonError->{$listProperty})) {
+                $first = $jsonError->{$listProperty}[0] ?? null;
+                if ($first !== null && !empty($first->detail)) {
+                    return $first->detail;
+                }
+            }
+        }
+
+        // BeedooException's $message is typed `string $message = null` (i.e.
+        // implicitly nullable) but PHP's own Exception::__construct() is
+        // NOT nullable-typed for $message -- passing null there is a
+        // deprecation warning as of PHP 8.1. Never pass null through.
+        return "";
+    }
+
+    /**
+     * @param mixed $jsonError
+     */
+    private static function extractErrorType($jsonError): string
+    {
+        if (property_exists($jsonError, 'error') && $jsonError->error) {
+            return $jsonError->error;
+        }
+
+        foreach (['errors', 'data'] as $listProperty) {
+            if (property_exists($jsonError, $listProperty) && is_array($jsonError->{$listProperty})) {
+                $first = $jsonError->{$listProperty}[0] ?? null;
+                if ($first !== null && !empty($first->code)) {
+                    return $first->code;
+                }
+            }
+        }
+
+        return "";
     }
 
     /**

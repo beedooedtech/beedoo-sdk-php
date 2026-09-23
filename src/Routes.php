@@ -45,6 +45,10 @@ class Routes
             return "admin/api/v1/groups";
         };
 
+        $anonymous->details = static function ($id) {
+            return "admin/api/v1/groups/{$id}";
+        };
+
         return $anonymous;
     }
 
@@ -119,8 +123,14 @@ class Routes
             return "admin/api/v1/users";
         };
 
-        $anonymous->details = static function ($identity) {
-            return "admin/api/v1/users/{$identity}";
+        $anonymous->details = static function ($identity, $identityName = null) {
+            $uri = "admin/api/v1/users/{$identity}";
+
+            if ($identityName !== null) {
+                $uri .= "/{$identityName}";
+            }
+
+            return $uri;
         };
 
         return $anonymous;

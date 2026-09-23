@@ -32,6 +32,11 @@ class RoutesTest extends TestCase
 
         $this->assertObjectHasAttribute('base', $routes);
         $this->assertIsCallable($routes->base);
+
+        $this->assertObjectHasAttribute('details', $routes);
+        $this->assertIsCallable($routes->details);
+
+        $this->assertSame('admin/api/v1/groups/1', $routes->details(1));
     }
 
     /** @test */
@@ -83,6 +88,9 @@ class RoutesTest extends TestCase
 
         $this->assertObjectHasAttribute('details', $routes);
         $this->assertIsCallable($routes->details);
+
+        $this->assertSame('admin/api/v1/users/1', $routes->details(1));
+        $this->assertSame('admin/api/v1/users/teste@beedoo.io/email', $routes->details('teste@beedoo.io', 'email'));
     }
 
     /** @test */

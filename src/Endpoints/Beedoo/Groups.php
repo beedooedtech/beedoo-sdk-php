@@ -26,4 +26,28 @@ class Groups extends Endpoint
             ['json' => $payload]
         );
     }
+
+    public function find(int $groupId)
+    {
+        $response = $this->client->request(
+            self::GET,
+            Routes::groups()->details($groupId)
+        );
+
+        return $response->data;
+    }
+
+    /**
+     * @param int $groupId
+     * @param array $payload Accepts: name, typeGroup, temporaryGroup,
+     *                        participants: ['add' => [...], 'remove' => [...]]
+     */
+    public function update(int $groupId, array $payload)
+    {
+        return $this->client->request(
+            self::PUT,
+            Routes::groups()->details($groupId),
+            ['json' => $payload]
+        );
+    }
 }
